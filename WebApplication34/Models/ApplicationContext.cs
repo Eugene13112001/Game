@@ -14,12 +14,16 @@ namespace WebApplication34.Models
             : base(options)
         {
             Database.EnsureCreated();
-            this.AddView("RPG");
-            this.AddView("Strategy");
-            this.AddView("Shooting");
-            this.AddGame("Crysis" , "Studio1" ,new string[] { "Shooting" });
-            this.AddGame("Witcher", "Studio2", new string[] { "RPG" , "Strategy" });
-            this.AddGame("Noire", "Studio3", new string[] { "RPG", "Shooting" });
+            if (!this.Games.Any<Game>())
+            {
+                this.AddView("RPG");
+                this.AddView("Strategy");
+                this.AddView("Shooting");
+                this.AddGame("Crysis", "Studio1", new string[] { "Shooting" });
+                this.AddGame("Witcher", "Studio2", new string[] { "RPG", "Strategy" });
+                this.AddGame("Noire", "Studio3", new string[] { "RPG", "Shooting" });
+            }
+           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
